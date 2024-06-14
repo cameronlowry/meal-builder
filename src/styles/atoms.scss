@@ -1,0 +1,14 @@
+.mw-432-px,
+.container.mw-432-px {
+  max-width: 432px;
+}
+
+.bg-primary-light {
+  background-color: $light-green;
+}
+.bg-primary-lighter {
+  background-color: $lighter-green;
+}
+.bg-radius-leaf {
+  border-radius: calc(50vw - 447px) 0 calc(50vw - 447px) 0;
+}

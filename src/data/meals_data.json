@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Dragon fruit bowl",
+        "description": "A delicious bowl of dragon fruit, topped with fresh fruit and granola.",
+        "type": "vegetable",
+        "price": 10.00,
+        "image": "https://loremflickr.com/320/240/food?random=1",
+        "value": "dragonFruitBowl",
+        "id": "dragonFruitBowl"
+    },
+    {
+        "title": "Kale wrap",
+        "description": "A delicious wrap filled with kale, tomato, and vegan cheese.",
+        "type": "vegan",
+        "price": 12.00,
+        "image": "https://loremflickr.com/320/240/food?random=2",
+        "value": "kaleWrap",
+        "id": "kaleWrap"
+    },
+    {
+        "title": "Avocado toast",
+        "description": "A classic breakfast dish with mashed avocado on toasted bread.",
+        "type": "vegetarian",
+        "price": 8.50,
+        "image": "https://loremflickr.com/320/240/food?random=3",
+        "value": "avocadoToast",
+        "id": "avocadoToast"
+    },
+    {
+        "title": "Quinoa salad",
+        "description": "A refreshing salad with quinoa, mixed greens, and a tangy vinaigrette.",
+        "type": "vegan",
+        "price": 11.50,
+        "image": "https://loremflickr.com/320/240/food?random=4",
+        "value": "quinoaSalad",
+        "id": "quinoaSalad"
+    },
+    {
+        "title": "Mushroom risotto",
+        "description": "A creamy and flavorful risotto made with fresh mushrooms.",
+        "type": "vegetarian",
+        "price": 14.00,
+        "image": "https://loremflickr.com/320/240/food?random=5",
+        "value": "mushroomRisotto",
+        "id": "mushroomRisotto"
+    },
+    {
+        "title": "Veggie burger",
+        "description": "A delicious plant-based burger with all the fixings.",
+        "type": "vegan",
+        "price": 13.50,
+        "image": "https://loremflickr.com/320/240/food?random=6",
+        "value": "veggieBurger",
+        "id": "veggieBurger"
+    }
+]

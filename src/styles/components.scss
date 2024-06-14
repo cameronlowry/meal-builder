@@ -1,0 +1,85 @@
+.supr-hr {
+  color: black;
+  width: 140px;
+  opacity: 1;
+  margin: 0.5rem 0;
+}
+
+.supr-checkmark {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-color: $primary-green;
+  border: 1.5px solid $dark-green;
+  padding-bottom: 1px;
+  border-radius: 100%;
+  transform: rotate(45deg);
+
+  &.position-absolute {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    z-index: 2;
+  }
+}
+.pick-meals .supr-checkmark.position-absolute {
+  top: -10px;
+  right: 2px;
+}
+
+.supr-checkmark_stem {
+  position: absolute;
+  width: 2px;
+  height: 11px;
+  background-color: #ffffff;
+  left: calc(50% + 1px);
+  top: calc(50% - 8px);
+  border-radius: 2px;
+}
+
+.supr-checkmark_kick {
+  position: absolute;
+  width: 7px;
+  height: 2px;
+  background-color: #ffffff;
+  left: calc(50% - 4px);
+  top: calc(50% + 2px);
+  border-radius: 2px;
+}
+
+.supr-checkmark--dark {
+  .supr-checkmark_stem,
+  .supr-checkmark_kick {
+    background-color: #000000;
+  }
+  &.supr-checkmark {
+    background-color: white;
+    border-color: #000000;
+  }
+}
+
+.supr-stepper {
+  background-color: $xlight-grey;
+  padding: 16px;
+  border-bottom: 1px solid #29272633;
+}
+.supr-stepper .step {
+  cursor: pointer;
+  user-select: none;
+}
+.supr-stepper .step-number {
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  font-weight: 600;
+}
+.supr-landing-bg {
+  top: 440px;
+  left: -50%;
+  width: calc(100% - 128px);
+  transform: translate(50%, 0);
+  min-height: 60vh;
+  z-index: -1;
+  margin: 0 128px;
+  height: 80%;
+}

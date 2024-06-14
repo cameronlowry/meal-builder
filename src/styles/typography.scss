@@ -1,0 +1,30 @@
+.oswald-font {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.opensans-font {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &.oswald-font,
+  &.opensans-font {
+    letter-spacing: 1px;
+  }
+}
+
+.btn {
+  letter-spacing: 0.75px;
+}
+
+.error  {
+  color: $red;
+}

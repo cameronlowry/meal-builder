@@ -1,0 +1,85 @@
+$spacing-default: 8px;
+$primary-green: hsl(73, 61%, 51%);
+$dark-green: #798c34;
+$light-green: #eff5d7;
+$lighter-green: #EFF5D780;
+$xlight-grey: #F5F7FA;
+$text-primary: #292726;
+$red: red;
+
+:root {
+  --primary-green: $primary-green;
+  --light-green: $light-green;
+  --dark-green: $dark-green;
+  --light-gray: #c6c6c6;
+  --medium-gray: #777777;
+  
+  --font-serif: "Oswald", Georgia, "Times New Roman", Times, serif;
+  --font-sans-serif: "Open Sans", arial, sans-serif;
+  --font-weight-thin: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --fw-bold: 700;
+}
+
+// Bootstrap variable overrides
+$h1-font-size: 72px;
+$h2-font-size: 40px;
+$h3-font-size: 38px;
+$h4-font-size: 32px;
+$h5-font-size: 24px;
+$h6-font-size: 20px;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1440px,
+);
+
+$theme-colors: (
+  "primary": $primary-green,
+  "secondary": $dark-green,
+  "info": $light-green,
+  "danger": $red,
+  "light": #ffffff,
+  "dark": #292726,
+);
+$btn-border-radius: 2px;
+$btn-padding-x: 16px;
+$btn-padding-y: 8px;
+$input-padding-x: 16px;
+$input-padding-y: 11px;
+$input-border-radius: 2px;
+$input-border-color: #c6c6c6;
+$btn-font-weight: 800;
+$btn-line-height: 38px;
+$headings-font-family: var(--font-sans-serif);
+$headings-font-weight: 700;
+$btn-font-family: var(--font-sans-serif);
+$font-family-base: var(--font-sans-serif);
+$badge-color: $text-primary;
+$accordion-button-bg: #ffffff;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@import "styles/atoms.scss";
+@import "styles/components.scss";
+@import "styles/typography.scss";
+
+body,
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: unset;
+}
+
+.meal-builder-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
