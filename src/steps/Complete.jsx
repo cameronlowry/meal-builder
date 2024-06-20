@@ -39,7 +39,7 @@ export const Complete = () => {
       {state.result?.status !== "success" && (
         <div className="d-flex align-items-center justify-content-between p-2 border border-danger w-100">
           <span className="">
-            Oops, something went wrong! Please <a href="/payment">try again</a>
+            Oops, something went wrong! Please <Link to="/payment">try again</Link>
           </span>
 
           <span className="">
