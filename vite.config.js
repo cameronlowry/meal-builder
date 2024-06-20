@@ -2,6 +2,9 @@ import { defineConfig, transformWithEsbuild } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  build: {
+    assetsInlineLimit: 10000000,
+  },
   plugins: [
     {
       name: 'treat-js-files-as-jsx',

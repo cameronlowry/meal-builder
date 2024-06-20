@@ -2,8 +2,8 @@ $spacing-default: 8px;
 $primary-green: hsl(73, 61%, 51%);
 $dark-green: #798c34;
 $light-green: #eff5d7;
-$lighter-green: #EFF5D780;
-$xlight-grey: #F5F7FA;
+$lighter-green: #F7FAEB;
+$xlight-grey: #f5f7fa;
 $text-primary: #292726;
 $red: red;
 
@@ -13,7 +13,7 @@ $red: red;
   --dark-green: $dark-green;
   --light-gray: #c6c6c6;
   --medium-gray: #777777;
-  
+
   --font-serif: "Oswald", Georgia, "Times New Roman", Times, serif;
   --font-sans-serif: "Open Sans", arial, sans-serif;
   --font-weight-thin: 300;
@@ -61,6 +61,16 @@ $btn-font-family: var(--font-sans-serif);
 $font-family-base: var(--font-sans-serif);
 $badge-color: $text-primary;
 $accordion-button-bg: #ffffff;
+
+$modal-content-border-width: 0;
+$modal-content-border-radius: 4px;
+$modal-sm: 400px;
+$modal-md: 600px;
+$modal-lg: 900px;
+$modal-xl: 1145px;
+$modal-xxl: 1345px;
+$modal-content-bg: $lighter-green;
+$modal-dialog-margin-y-sm-up: 1.75rem;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 

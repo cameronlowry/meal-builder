@@ -1,9 +1,13 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
 
+//#region image imports
+import basketImage from "/public/shopping-basket.png";
+//#endregion
+
 export const CartIcon = forwardRef(function CartIcon({ width = "48px", ...props }) {
   return (
-    <img {...props} width={width} src="shopping-basket.png" alt="Shopping basket icon" />
+    <img {...props} width={width} src={basketImage} alt="Shopping basket icon" />
   );
 });
 

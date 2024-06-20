@@ -15,7 +15,7 @@ export const Stepper = () => {
   };
 
   const isCurrentStep = (path) => {
-    return path === location.pathname;
+    return location.pathname.includes(path);
   };
 
   //TODO: Implement this function
@@ -27,7 +27,7 @@ export const Stepper = () => {
     <nav className="supr-stepper w-100 navbar navbar-expand-lg">
       <div className="collapse navbar-collapse justify-content-center">
         <ol className="navbar-nav gap-3">
-          <li className={`step nav-item d-flex align-items-center`} onClick={() => navigate("/build")}>
+          <li className={`step nav-item d-flex align-items-center`} onClick={() => navigate("/build", { relative: "path" })}>
             {!isStepComplete("/build") && (
               <span className={`step-number border rounded-circle ${isCurrentStep("/build") ? "bg-primary-light border-dark" : ""}`}>1</span>
             )}

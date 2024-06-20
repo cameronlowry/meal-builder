@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import { useAppState } from "../services/state";
+import { useAppState } from "../state/state";
 import { FREQUENCY_KEY, MEALS_KEY, PEOPLE_KEY, PREFERENCES_KEY, SUBSCRIPTION_KEY } from "../constants";
 import { mapKeyToDisplayName } from "../services/PlanService";
 
@@ -38,8 +38,12 @@ export const Complete = () => {
 
       {state.result?.status !== "success" && (
         <div className="d-flex align-items-center justify-content-between p-2 border border-danger w-100">
-          <span>
+          <span className="">
             Oops, something went wrong! Please <a href="/payment">try again</a>
+          </span>
+
+          <span className="">
+            <a href="tel:+12038611150">Call us</a>
           </span>
         </div>
       )}
@@ -87,7 +91,7 @@ export const Complete = () => {
             </div>
             <div className="">
               {watch(PREFERENCES_KEY)
-                .map((x) => mapKeyToDisplayName(preferences, x))
+                .map((selectedPreference) => mapKeyToDisplayName(preferences, selectedPreference))
                 .join(", ")}
               , {mapKeyToDisplayName(subscriptions, watch(SUBSCRIPTION_KEY))}
             </div>

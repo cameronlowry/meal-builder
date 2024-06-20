@@ -21,7 +21,7 @@ export const YourSelection = ({ selectedValues }) => {
 
   return (
     <>
-      <div className="fw-bold mb-2">{selectedPreferences.map((x) => mapKeyToDisplayName(preferences, x)).join(", ")}</div>
+      <div className="fw-bold mb-2">{selectedPreferences.map((selectedPreference) => mapKeyToDisplayName(preferences, selectedPreference)).join(", ")}</div>
 
       <div className="">
         {selectedFrequency} meals for {selectedPeople} per week

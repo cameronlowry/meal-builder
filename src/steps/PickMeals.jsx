@@ -6,15 +6,15 @@ import { useState } from "react";
 
 //#region internal imports
 import { Button, Form } from "../forms";
-import { useAppState } from "../services/state";
+import { CartIcon } from "../components/CartIcon";
+import { CheckMark } from "../components/CheckMark";
+import { FREQUENCY_KEY, MEALS_KEY } from "../constants";
+import { Heading } from "../components/Heading";
+import { useAppState } from "../state/state";
 //#endregion
 
 //#region data imports
 import mealsData from "../data/meals_data.json";
-import { FREQUENCY_KEY, MEALS_KEY } from "../constants";
-import { Heading } from "../components/Heading";
-import { CheckMark } from "../components/CheckMark";
-import { CartIcon } from "../components/CartIcon";
 //#endregion
 
 export const PickMeals = () => {
@@ -34,10 +34,10 @@ export const PickMeals = () => {
       <fieldset>
         <Heading title="Pick Your Meals" />
 
-        <h4>Full Meals</h4>
-
         <div className="row">
           <div className="col-sm-12 col-lg-8">
+            <h6>Full Meals</h6>
+
             <div className="row g-4 flex-nowrap flex-sm-nowrap flex-md-wrap overflow-x-auto p-2">
               {meals.map((meal) => {
                 // const selectedMeal = watch(MEALS_KEY).find((x) => meal.id === x.id);
@@ -73,7 +73,6 @@ export const PickMeals = () => {
 
                           {!getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value) && (
                             <a
-                              href="#"
                               className="btn btn-outline-secondary w-100"
                               onClick={() => {
                                 const selectedMealCount = watch(MEALS_KEY).reduce((acc, meal) => acc + parseInt(meal.count), 0);
@@ -90,7 +89,6 @@ export const PickMeals = () => {
                           {getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value) && (
                             <div className="d-flex align-items-center justify-content-between w-100">
                               <a
-                                href="#"
                                 className="link"
                                 onClick={() =>
                                   setValue(
@@ -137,6 +135,8 @@ export const PickMeals = () => {
                 );
               })}
             </div>
+
+            <h6>Other?</h6>
           </div>
 
           <aside id="selected-choices" className="col-4 d-sm-none d-m-none d-lg-block d-xl-block sticky-top" style={{ height: "fit-content" }}>
@@ -192,7 +192,7 @@ export const PickMeals = () => {
               <Button>SAVE & CONTINUE</Button>
 
               <div className="mt-2">
-                <Link className={``} to="/register">
+                <Link className={``} to="/address">
                   {"<"} Previous
                 </Link>
               </div>

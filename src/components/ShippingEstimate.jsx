@@ -1,4 +1,5 @@
 //#region external imports
+import { useState } from "react";
 import PropTypes from "prop-types";
 //#endregion
 
@@ -9,17 +10,12 @@ import { mapKeyToDisplayName } from "../services/PlanService";
 
 //#region data imports
 import preferencesData from "../data/preferences_data.json";
-import { useState } from "react";
 //#endregion
 
 export const ShippingEstimate = ({ selectedValues }) => {
   const [preferences] = useState(preferencesData);
 
-  const {
-    [PREFERENCES_KEY]: selectedPreferences,
-    [FREQUENCY_KEY]: selectedFrequency,
-    [PEOPLE_KEY]: selectedPeople,
-  } = selectedValues;
+  const { [PREFERENCES_KEY]: selectedPreferences, [FREQUENCY_KEY]: selectedFrequency, [PEOPLE_KEY]: selectedPeople } = selectedValues;
 
   return (
     <>
@@ -27,7 +23,7 @@ export const ShippingEstimate = ({ selectedValues }) => {
         {selectedFrequency} meals per week, {selectedPeople} people
       </div>
 
-      <div className="mb-2">{selectedPreferences.map((x) => mapKeyToDisplayName(preferences, x)).join(", ")}</div>
+      <div className="mb-2">{selectedPreferences.map((selectedPreference) => mapKeyToDisplayName(preferences, selectedPreference)).join(", ")}</div>
 
       <div className="mb-2">
         {parseInt(selectedFrequency, 10) * parseInt(selectedPeople, 10)} total servings at{" "}

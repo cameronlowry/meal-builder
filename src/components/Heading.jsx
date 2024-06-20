@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export const Heading = forwardRef(function Heading({ title = "No title provided", justify = "justify-content-center", showHr = true, className, ...props }) {
   return (
     <div {...props} className={`d-grid ${justify} ${className}`}>
-      <h4 className="oswald-font text-uppercase">{title}</h4>
+      <h4 className="oswald-font text-uppercase text-center">{title}</h4>
       {showHr && <hr className="supr-hr mx-auto" />}
     </div>
   );

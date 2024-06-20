@@ -2,6 +2,12 @@
 .container.mw-432-px {
   max-width: 432px;
 }
+@media screen and (min-width: 992px) {
+  .mw-lg-450 {
+    max-width: 450px;
+  }
+}
+
 
 .bg-primary-light {
   background-color: $light-green;

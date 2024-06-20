@@ -7,7 +7,7 @@ import { useState } from "react";
 //#region internal imports
 import { Button, Form } from "../forms";
 import { FREQUENCY_KEY, PEOPLE_KEY, PREFERENCES_KEY, SUBSCRIPTION_KEY } from "../constants";
-import { useAppState } from "../services/state";
+import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
 //#endregion
 
@@ -28,7 +28,7 @@ export const PersonalizePlan = () => {
   const [people] = useState(peopleData);
   const [subscriptions] = useState(subscriptionData);
 
-  const { handleSubmit, register, watch, getValues } = useForm({ defaultValues: state });
+  const { handleSubmit, register, watch, getValues } = useForm({ defaultValues: state, mode: "onBlur" });
   const navigate = useNavigate();
 
   const saveData = (data) => {
@@ -86,7 +86,11 @@ export const PersonalizePlan = () => {
               <div className="row mb-4">
                 {people.map((button) => (
                   <label htmlFor={button.labelid} key={button.id} className={`col-6`}>
-                    <div className={`border rounded-1 position-relative ${watch(PEOPLE_KEY) === button.value ? "border-secondary border-2" : "border-dark"}`}>
+                    <div
+                      className={`border rounded-1 position-relative ${
+                        watch(PEOPLE_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                      }`}
+                    >
                       <div className="text-center p-3">
                         <input
                           {...register(PEOPLE_KEY)}
@@ -164,7 +168,7 @@ export const PersonalizePlan = () => {
           </div>
 
           <aside id="selected-choices" className="d-sm-none d-m-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
-            <div className="p-3 border rounded-1 mb-4">
+            <div className="p-4 border rounded-1 mb-4">
               <h6 className="d-flex align-items-center gap-3">
                 <CartIcon width="24px" /> Your selection
               </h6>

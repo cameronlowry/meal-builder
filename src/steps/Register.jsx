@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 //#region internal imports
 import { Button, Field, Form, Input } from "../forms";
-import { useAppState } from "../services/state";
+import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
 //#endregion
 
@@ -15,7 +15,6 @@ export const Register = () => {
   const {
     handleSubmit,
     register,
-    // watch,
     formState: { errors },
   } = useForm({ defaultValues: state });
 

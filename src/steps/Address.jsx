@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 //#region internal imports
 import { Button, Field, Form, Input } from "../forms";
-import { useAppState } from "../services/state";
+import { useAppState } from "../state/state";
 import { DATE_KEY, DAY_KEY } from "../constants";
 import { Heading } from "../components/Heading";
 //#endregion
@@ -51,7 +51,7 @@ export const Address = () => {
         <Heading title="Address" />
 
         <div className="row">
-          <div id="address-column" className="col-sm-12 col-lg-8 p-5">
+          <div id="address-column" className="col-sm-12 col-lg-8 px-5">
             <h6 className="mb-4">Delivery Address</h6>
 
             <div className="row">

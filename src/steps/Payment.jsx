@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import { PaymentForm } from "react-square-web-payments-sdk";
 
 import { Button, Form } from "../forms";
-import { useAppState } from "../services/state";
+import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
 import { ShippingEstimate } from "../components/ShippingEstimate";
 import { CartIcon } from "../components/CartIcon";
@@ -32,7 +32,9 @@ export const Payment = () => {
 
           <aside id="selected-choices" className="d-sm-none d-m-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
             <div className="p-4 border rounded-1 mb-4">
-              <h6>Your selection</h6>
+              <h6 className="d-flex align-items-center gap-3">
+                <CartIcon width="24px" /> Your selection
+              </h6>
               <hr />
 
               <ShippingEstimate selectedValues={getValues()} />
@@ -42,7 +44,7 @@ export const Payment = () => {
               <Button>PLACE ORDER</Button>
 
               <div className="mt-2">
-                <Link className={``} to="/register">
+                <Link className={``} to="/pickmeals">
                   {"<"} Previous
                 </Link>
               </div>

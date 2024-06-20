@@ -52,5 +52,135 @@
         "image": "https://loremflickr.com/320/240/food?random=6",
         "value": "veggieBurger",
         "id": "veggieBurger"
+    },
+    {
+        "title": "Vegan Pad Thai",
+        "description": "A flavorful stir-fried noodle dish with tofu, vegetables, and peanuts.",
+        "type": "vegan",
+        "price": 11.00,
+        "image": "https://loremflickr.com/320/240/food?random=7",
+        "value": "veganPadThai",
+        "id": "veganPadThai",
+        "category": "noodles"
+    },
+    {
+        "title": "Margherita Pizza",
+        "description": "A classic pizza topped with fresh tomatoes, mozzarella cheese, and basil.",
+        "type": "vegetarian",
+        "price": 9.50,
+        "image": "https://loremflickr.com/320/240/food?random=8",
+        "value": "margheritaPizza",
+        "id": "margheritaPizza",
+        "category": "pizza"
+    },
+    {
+        "title": "Falafel Wrap",
+        "description": "A tasty wrap filled with crispy falafel, hummus, and fresh vegetables.",
+        "type": "vegetarian",
+        "price": 10.50,
+        "image": "https://loremflickr.com/320/240/food?random=9",
+        "value": "falafelWrap",
+        "id": "falafelWrap",
+        "category": "wraps"
+    },
+    {
+        "title": "Miso Soup",
+        "description": "A traditional Japanese soup made with soybean paste, tofu, and seaweed.",
+        "type": "vegan",
+        "price": 6.00,
+        "image": "https://loremflickr.com/320/240/food?random=10",
+        "value": "misoSoup",
+        "id": "misoSoup",
+        "category": "soup"
+    },
+    {
+        "title": "Caprese Salad",
+        "description": "A refreshing salad with fresh tomatoes, mozzarella cheese, and basil.",
+        "type": "vegetarian",
+        "price": 8.00,
+        "image": "https://loremflickr.com/320/240/food?random=11",
+        "value": "capreseSalad",
+        "id": "capreseSalad",
+        "category": "salads"
+    },
+    {
+        "title": "Sushi Roll",
+        "description": "A delicious roll of sushi with fresh fish, rice, and vegetables.",
+        "type": "pescatarian",
+        "price": 15.00,
+        "image": "https://loremflickr.com/320/240/food?random=12",
+        "value": "sushiRoll",
+        "id": "sushiRoll",
+        "category": "sushi"
+    },
+    {
+        "title": "Pesto Pasta",
+        "description": "A flavorful pasta dish with homemade pesto sauce and cherry tomatoes.",
+        "type": "vegetarian",
+        "price": 10.50,
+        "image": "https://loremflickr.com/320/240/food?random=13",
+        "value": "pestoPasta",
+        "id": "pestoPasta",
+        "category": "pasta"
+    },
+    {
+        "title": "Greek Salad",
+        "description": "A refreshing salad with cucumbers, tomatoes, olives, and feta cheese.",
+        "type": "vegetarian",
+        "price": 9.00,
+        "image": "https://loremflickr.com/320/240/food?random=14",
+        "value": "greekSalad",
+        "id": "greekSalad",
+        "category": "salads"
+    },
+    {
+        "title": "Tofu Stir-Fry",
+        "description": "A delicious stir-fry dish with tofu, mixed vegetables, and a savory sauce.",
+        "type": "vegan",
+        "price": 12.00,
+        "image": "https://loremflickr.com/320/240/food?random=15",
+        "value": "tofuStirFry",
+        "id": "tofuStirFry",
+        "category": "stir-fry"
+    },
+    {
+        "title": "Vegetable Curry",
+        "description": "A flavorful curry made with a variety of vegetables and aromatic spices.",
+        "type": "vegetarian",
+        "price": 13.50,
+        "image": "https://loremflickr.com/320/240/food?random=16",
+        "value": "vegetableCurry",
+        "id": "vegetableCurry",
+        "category": "curry"
+    },
+    {
+        "title": "Hummus Plate",
+        "description": "A delicious plate of hummus, served with pita bread and fresh vegetables.",
+        "type": "vegetarian",
+        "price": 7.50,
+        "image": "https://loremflickr.com/320/240/food?random=17",
+        "value": "hummusPlate",
+        "id": "hummusPlate",
+        "category": "appetizers"
+    },
+    {
+        "title": "Veggie Stir-Fry",
+        "description": "A flavorful stir-fry dish with a variety of vegetables and a tangy sauce.",
+        "type": "vegetarian",
+        "price": 10.00,
+        "image": "https://loremflickr.com/320/240/food?random=18",
+        "value": "veggieStirFry",
+        "id": "veggieStirFry",
+        "category": "stir-fry"
+    },
+    {
+        "title": "Fruit Salad",
+        "description": "A refreshing salad with a variety of fresh fruits, perfect for a healthy snack.",
+        "type": "vegan",
+        "price": 8.50,
+        "image": "https://loremflickr.com/320/240/food?random=19",
+        "value": "fruitSalad",
+        "id": "fruitSalad",
+        "category": "salads"
     }
 ]
