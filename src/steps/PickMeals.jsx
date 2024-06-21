@@ -15,6 +15,8 @@ import { useAppState } from "../state/state";
 
 //#region data imports
 import mealsData from "../data/meals_data.json";
+import ScrollToTop from "../components/ScrollToTop";
+import { Accordion } from "react-bootstrap";
 //#endregion
 
 export const PickMeals = () => {
@@ -31,6 +33,8 @@ export const PickMeals = () => {
 
   return (
     <Form className="pick-meals" onSubmit={handleSubmit(saveData)}>
+      <ScrollToTop />
+
       <fieldset>
         <Heading title="Pick Your Meals" />
 
@@ -135,11 +139,9 @@ export const PickMeals = () => {
                 );
               })}
             </div>
-
-            <h6>Other?</h6>
           </div>
 
-          <aside id="selected-choices" className="col-4 d-sm-none d-m-none d-lg-block d-xl-block sticky-top" style={{ height: "fit-content" }}>
+          <aside id="selected-choices" className="col-4 d-none d-lg-block d-xl-block sticky-top" style={{ height: "fit-content" }}>
             <div className="p-4 border rounded-1 mb-4">
               <h6 className="d-flex align-items-center gap-3">
                 <CartIcon width="24px" /> Your selection
@@ -193,7 +195,7 @@ export const PickMeals = () => {
 
               <div className="mt-2">
                 <Link className={``} to="/address">
-                  {"<"} Previous
+                  Previous
                 </Link>
               </div>
             </div>
@@ -201,20 +203,18 @@ export const PickMeals = () => {
             <Link className={``} to="/address"></Link>
           </aside>
 
-          <div className="accordion fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none" id="accordionExample">
-            <div className="accordion-item collapsed">
-              <h2 className="accordion-header">
-                <h6
-                  className="accordion-button bg-white"
-                  type="button"
-                  onClick={() => document.getElementById("collapseOne").classList.toggle("show")}
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  <CartIcon width="24px" /> Your selection
-                </h6>
-              </h2>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <Accordion className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0 ">
+            <Accordion.Item eventKey="0" className="shadow-xl">
+              <Accordion.Header>
+                <div className="d-flex align-items-end gap-2">
+                  <CartIcon width="24px" />
+                  <span className="h-100">Your selection</span>
+                </div>
+              </Accordion.Header>
+
+              <hr className="mx-3 my-2" />
+
+              <Accordion.Body>
                 <div className="p-4 border rounded-1 mb-4">
                   {!watch(MEALS_KEY).length && <span className="">Nothing selected</span>}
                   {watch(MEALS_KEY).map((selectedMeal) => (
@@ -239,32 +239,34 @@ export const PickMeals = () => {
                       </select>
                       <div>{selectedMeal.title}</div>
                       <a
-                        className="btn"
+                        type="button"
+                        className="btn-close"
+                        aria-label={`Remove ${selectedMeal.title}`}
                         onClick={() =>
                           setValue(
                             MEALS_KEY,
                             getValues(MEALS_KEY).filter((x) => x.value !== selectedMeal.value)
                           )
                         }
-                        aria-label={`Remove ${selectedMeal.title}`}
-                      >
-                        x
-                      </a>
+                      ></a>
                     </div>
                   ))}
                 </div>
+              </Accordion.Body>
 
-                <div>
-                  <Button>SAVE & CONTINUE</Button>
+              <div className="p-3 text-center">
+                <Button>SAVE & CONTINUE</Button>
+                
+                <div className="mt-3">
+                  <Link className={``} to="/address">
+                    Previous
+                  </Link>
                 </div>
-
-                <Link className={``} to="/address"></Link>
               </div>
-            </div>
-          </div>
+            </Accordion.Item>
+          </Accordion>
         </div>
       </fieldset>
-      {/* <p>{JSON.stringify(watch(MEALS_KEY))}</p> */}
     </Form>
   );
 };

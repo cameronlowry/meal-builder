@@ -1,6 +1,5 @@
 //#region external imports
 import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
-// import { createHashHistory } from "history";
 //#endregion
 
 //#region internal imports
@@ -14,19 +13,16 @@ import { Register } from "./steps/Register";
 import { Stepper } from "./steps/Stepper";
 import { Error } from "./steps/Error";
 import { LandingPage } from "./steps/LandingPage";
-import ScrollToTop from "./services/ScrollToTop";
 import { Offer } from "./forms/Offer";
 //#endregion
 
 function App() {
-  // const memoryHistory = createHashHistory({});
 
   return (
     <div className="meal-builder-app">
       <AppProvider>
         <Router>
           <>
-            <ScrollToTop />
             <Stepper />
 
             <Routes>

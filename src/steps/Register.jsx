@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Field, Form, Input } from "../forms";
 import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
+import ScrollToTop from "../components/ScrollToTop";
 //#endregion
 
 export const Register = () => {
@@ -29,6 +30,8 @@ export const Register = () => {
 
   return (
     <Form className="mw-432-px" onSubmit={handleSubmit(saveData)}>
+      <ScrollToTop />
+
       <fieldset className="">
         <Heading title="Get Started" />
 

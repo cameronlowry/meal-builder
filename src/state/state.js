@@ -30,7 +30,7 @@ export function AppProvider({ children }) {
     phoneNumber: "",
 
     result: {
-      status: "error",
+      status: "success",
       dismissed: false,
     },
     offerDismissed: readCookie("offer_dismissed") === "true",

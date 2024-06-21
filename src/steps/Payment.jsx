@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { Accordion } from "react-bootstrap";
 // import { PaymentForm } from "react-square-web-payments-sdk";
 
 import { Button, Form } from "../forms";
@@ -7,6 +8,7 @@ import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
 import { ShippingEstimate } from "../components/ShippingEstimate";
 import { CartIcon } from "../components/CartIcon";
+import ScrollToTop from "../components/ScrollToTop";
 
 export const Payment = () => {
   const [state, setState] = useAppState();
@@ -21,6 +23,8 @@ export const Payment = () => {
 
   return (
     <Form className="" onSubmit={handleSubmit(saveData)}>
+      <ScrollToTop />
+
       <fieldset>
         <Heading title="Payment" />
 
@@ -30,7 +34,7 @@ export const Payment = () => {
             PAYMENT FORM HERE
           </div>
 
-          <aside id="selected-choices" className="d-sm-none d-m-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
+          <aside id="selected-choices" className="d-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
             <div className="p-4 border rounded-1 mb-4">
               <h6 className="d-flex align-items-center gap-3">
                 <CartIcon width="24px" /> Your selection
@@ -45,37 +49,37 @@ export const Payment = () => {
 
               <div className="mt-2">
                 <Link className={``} to="/pickmeals">
-                  {"<"} Previous
+                  Previous
                 </Link>
               </div>
             </div>
           </aside>
 
-          <div className="accordion fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none" id="accordionExample">
-            <div className="accordion-item collapsed">
-              <h2 className="accordion-header">
-                <h6
-                  className="accordion-button bg-white"
-                  type="button"
-                  onClick={() => document.getElementById("collapseOne").classList.toggle("show")}
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  <CartIcon width="24px" /> Your selection
-                </h6>
-              </h2>
+          <Accordion className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0 ">
+            <Accordion.Item eventKey="0" className="shadow-xl">
+              <Accordion.Header>
+                <div className="d-flex align-items-end gap-2">
+                  <CartIcon width="24px" />
+                  <span className="h-100">Your selection</span>
+                </div>
+              </Accordion.Header>
 
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div className="accordion-body">
-                  <ShippingEstimate selectedValues={getValues()} />
+              <hr className="mx-3 my-2" />
+
+              <Accordion.Body>
+                <ShippingEstimate selectedValues={getValues()} />
+              </Accordion.Body>
+
+              <div className="p-3 text-center">
+                <Button>SAVE & CONTINUE</Button>
+                <div className="mt-3">
+                  <Link className={``} to="/register">
+                    Previous
+                  </Link>
                 </div>
               </div>
-
-              <div className="p-4">
-                <Button>SAVE & CONTINUE</Button>
-              </div>
-            </div>
-          </div>
+            </Accordion.Item>
+          </Accordion>
         </div>
       </fieldset>
     </Form>

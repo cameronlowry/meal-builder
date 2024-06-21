@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { Accordion } from "react-bootstrap";
 // import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 //#endregion
 
@@ -17,6 +18,7 @@ import dayData from "../data/day_data.json";
 import datesData from "../data/dates_data.json";
 import { ShippingEstimate } from "../components/ShippingEstimate";
 import { CartIcon } from "../components/CartIcon";
+import ScrollToTop from "../components/ScrollToTop";
 //#endregion
 
 export const Address = () => {
@@ -47,20 +49,22 @@ export const Address = () => {
 
   return (
     <Form className="" onSubmit={handleSubmit(saveData)}>
+      <ScrollToTop />
+
       <fieldset>
         <Heading title="Address" />
 
         <div className="row">
-          <div id="address-column" className="col-sm-12 col-lg-8 px-5">
+          <div id="address-column" className="col-sm-12 col-lg-8 px--sm-0 px-md-5">
             <h6 className="mb-4">Delivery Address</h6>
 
             <div className="row">
-              <div className="col-6">
+              <div className="col-sm-12 col-md-6">
                 <Field label="First name*" error={errors?.firstName}>
                   <Input {...register("firstName", { required: "First name is required" })} id="first-name" />
                 </Field>
               </div>
-              <div className="col-6">
+              <div className="col-sm-12 col-md-6">
                 <Field label="Last name" error={errors?.lastName}>
                   <Input {...register("lastName", { required: "Last name is required" })} id="last-name" />
                 </Field>
@@ -68,7 +72,7 @@ export const Address = () => {
             </div>
 
             <div className="row">
-              <div className="col-6">
+              <div className="col-sm-12 col-md-6">
                 <Field label="Address*" error={errors?.street}>
                   {/* <Autocomplete
                     id="address"
@@ -81,7 +85,7 @@ export const Address = () => {
                   <Input {...register("address")} id="address" />
                 </Field>
               </div>
-              <div className="col-6">
+              <div className="col-sm-12 col-md-6">
                 <Field label="Address Line 2" error={errors?.addressLine2}>
                   <Input {...register("addressLine2")} id="addressLine2" />
                 </Field>
@@ -89,17 +93,17 @@ export const Address = () => {
             </div>
 
             <div className="row">
-              <div className="col-4">
+              <div className="col-sm-12 col-md-4">
                 <Field label="City*" error={errors?.city}>
                   <Input {...register("city", { required: "city is required" })} id="city" />
                 </Field>
               </div>
-              <div className="col-4">
+              <div className="col-sm-12 col-md-4">
                 <Field label="State*" error={errors?.useAppState}>
                   <Input {...register("state", { required: "State is required" })} id="state" />
                 </Field>
               </div>
-              <div className="col-4">
+              <div className="col-sm-12 col-md-4">
                 <Field label="ZIP code*" error={errors?.zipCode}>
                   <Input {...register("zipCode", { required: "ZIP code is required" })} id="zip-code" type="number" />
                 </Field>
@@ -123,7 +127,9 @@ export const Address = () => {
                   <label
                     htmlFor={button.labelid}
                     key={button.id}
-                    className={`col border rounded-1 position-relative ${watch(DAY_KEY) === button.value ? "border-secondary border-2" : "border-dark"}`}
+                    className={`col border rounded-1 position-relative ${
+                      watch(DAY_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                    }`}
                   >
                     <div className="text-center p-3">
                       <input {...register(DAY_KEY)} id={button.id} className="d-none" type="radio" value={button.value} data-field={DAY_KEY} />
@@ -146,7 +152,9 @@ export const Address = () => {
                   <label
                     htmlFor={button.labelid}
                     key={button.id}
-                    className={`col border rounded-1 position-relative ${watch(DATE_KEY) === button.value ? "border-secondary border-2" : "border-dark"}`}
+                    className={`col border rounded-1 position-relative ${
+                      watch(DATE_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                    }`}
                   >
                     <div className="text-center p-3">
                       <input {...register(DATE_KEY)} id={button.id} className="d-none" type="radio" value={button.value} data-field={DATE_KEY} />
@@ -165,7 +173,7 @@ export const Address = () => {
             </div>
           </div>
 
-          <aside id="selected-choices" className="d-sm-none d-m-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
+          <aside id="selected-choices" className="d-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
             <div className="p-4 border rounded-1 mb-4">
               <h6 className="d-flex align-items-center gap-3">
                 <CartIcon width="24px" /> Your selection
@@ -180,37 +188,38 @@ export const Address = () => {
 
               <div className="mt-2">
                 <Link className={``} to="/register">
-                  {"<"} Previous
+                  Previous
                 </Link>
               </div>
             </div>
           </aside>
 
-          <div className="accordion fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none" id="accordionExample">
-            <div className="accordion-item collapsed">
-              <h2 className="accordion-header">
-                <h6
-                  className="accordion-button bg-white"
-                  type="button"
-                  onClick={() => document.getElementById("collapseOne").classList.toggle("show")}
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  <CartIcon width="24px" /> Your selection
-                </h6>
-              </h2>
+          <Accordion className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0 ">
+            <Accordion.Item eventKey="0" className="shadow-xl">
+              <Accordion.Header>
+                <div className="d-flex align-items-end gap-2">
+                  <CartIcon width="24px" />
+                  <span className="h-100">Your selection</span>
+                </div>
+              </Accordion.Header>
 
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div className="accordion-body">
-                  <ShippingEstimate selectedValues={getValues()} />
+              <hr className="mx-3 my-2" />
+
+              <Accordion.Body>
+                <ShippingEstimate selectedValues={getValues()} />
+              </Accordion.Body>
+
+              <div className="p-3 text-center">
+                <Button>SAVE & CONTINUE</Button>
+
+                <div className="mt-3">
+                  <Link className={``} to="/register">
+                    Previous
+                  </Link>
                 </div>
               </div>
-
-              <div className="p-4">
-                <Button>SAVE & CONTINUE</Button>
-              </div>
-            </div>
-          </div>
+            </Accordion.Item>
+          </Accordion>
         </div>
       </fieldset>
     </Form>

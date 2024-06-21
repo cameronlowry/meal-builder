@@ -1,7 +1,8 @@
 //#region external imports
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Accordion } from "react-bootstrap";
 //#endregion
 
 //#region internal imports
@@ -19,6 +20,7 @@ import subscriptionData from "../data/subscription_data.json";
 import { CheckMark } from "../components/CheckMark";
 import { YourSelection } from "../components/YourSelection";
 import { CartIcon } from "../components/CartIcon";
+import ScrollToTop from "../components/ScrollToTop";
 //#endregion
 
 export const PersonalizePlan = () => {
@@ -29,15 +31,22 @@ export const PersonalizePlan = () => {
   const [subscriptions] = useState(subscriptionData);
 
   const { handleSubmit, register, watch, getValues } = useForm({ defaultValues: state, mode: "onBlur" });
+
   const navigate = useNavigate();
+  const accordionTrigger = useRef(null);
 
   const saveData = (data) => {
     setState({ ...state, ...data });
     navigate("/register");
   };
 
+  setTimeout(() => {
+    accordionTrigger.current?.click();
+  }, 1000);
+
   return (
     <Form className="" onSubmit={handleSubmit(saveData)}>
+      <ScrollToTop />
       <fieldset>
         <Heading title="Personalize Your Plan" />
 
@@ -167,7 +176,7 @@ export const PersonalizePlan = () => {
             </div>
           </div>
 
-          <aside id="selected-choices" className="d-sm-none d-m-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
+          <aside id="selected-choices" className="d-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
             <div className="p-4 border rounded-1 mb-4">
               <h6 className="d-flex align-items-center gap-3">
                 <CartIcon width="24px" /> Your selection
@@ -179,31 +188,27 @@ export const PersonalizePlan = () => {
             <Button>SELECT THIS PLAN</Button>
           </aside>
 
-          <div className="accordion fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none" id="accordionExample">
-            <div className="accordion-item collapsed">
-              <h2 className="accordion-header">
-                <h6
-                  className="accordion-button bg-white"
-                  type="button"
-                  onClick={() => document.getElementById("collapseOne").classList.toggle("show")}
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  <CartIcon width="24px" /> Your selection
-                </h6>
-              </h2>
-
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div className="accordion-body">
-                  <YourSelection selectedValues={getValues()} />
+          <Accordion defaultActiveKey="0" className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0">
+            <Accordion.Item eventKey="0" className="shadow-xl">
+              <Accordion.Button className="d-none" ref={accordionTrigger}></Accordion.Button>
+              <Accordion.Header>
+                <div className="d-flex align-items-end gap-2">
+                  <CartIcon width="24px" />
+                  <span className="h-100">Your selection</span>
                 </div>
-              </div>
+              </Accordion.Header>
 
-              <div className="p-4">
+              <hr className="mx-3 my-2" />
+
+              <Accordion.Body>
+                <YourSelection selectedValues={getValues()} />
+              </Accordion.Body>
+
+              <div className="p-3">
                 <Button>SELECT THIS PLAN</Button>
               </div>
-            </div>
-          </div>
+            </Accordion.Item>
+          </Accordion>
         </div>
       </fieldset>
     </Form>

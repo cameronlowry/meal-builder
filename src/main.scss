@@ -2,7 +2,7 @@ $spacing-default: 8px;
 $primary-green: hsl(73, 61%, 51%);
 $dark-green: #798c34;
 $light-green: #eff5d7;
-$lighter-green: #F7FAEB;
+$lighter-green: #f7faeb;
 $xlight-grey: #f5f7fa;
 $text-primary: #292726;
 $red: red;
@@ -60,7 +60,17 @@ $headings-font-weight: 700;
 $btn-font-family: var(--font-sans-serif);
 $font-family-base: var(--font-sans-serif);
 $badge-color: $text-primary;
+
 $accordion-button-bg: #ffffff;
+$accordion-button-active-bg: #ffffff;
+$accordion-border-width: 0;
+$accordion-border-radius: 8px;
+$accordion-inner-border-radius: 8px;
+$accordion-button-active-color: $text-primary;
+$accordion-padding-y: 1rem;
+$accordion-padding-x: 1rem;
+$accordion-body-padding-y: 1rem;
+$accordion-body-padding-x: 2rem;
 
 $modal-content-border-width: 0;
 $modal-content-border-radius: 4px;
@@ -92,4 +102,14 @@ html {
   padding: 0 24px;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+hr {
+  margin: 1.5rem 0;
+}
+
+fieldset:has(.fixed-bottom.accordion) {
+  @media screen and (max-width: 991px) {
+    margin-bottom: 216px;
+  }
 }
