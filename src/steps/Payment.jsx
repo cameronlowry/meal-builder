@@ -29,7 +29,7 @@ export const Payment = () => {
         <Heading title="Payment" />
 
         <div className="row">
-          <div className="col-sm-12 col-lg-8 p-5">
+          <div className="col-sm-12 col-lg-8 p-4 p-md-5 p-lg-5">
             {/* <PaymentForm applicationId="sq0idp-Y0QZQ-test" /> */}
             PAYMENT FORM HERE
           </div>

@@ -93,7 +93,7 @@ export const Complete = () => {
       </div>
 
       <div className="bg-grey">
-        <div className="container my-5 px-5 py-3">
+        <div className="container my-5 px-0 px-sm-4 py-3">
           <div className="row">
             <div className="col p-4">
               <label className="fw-bold mb-3" htmlFor="">

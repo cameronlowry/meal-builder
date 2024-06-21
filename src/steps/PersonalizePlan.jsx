@@ -10,6 +10,10 @@ import { Button, Form } from "../forms";
 import { FREQUENCY_KEY, PEOPLE_KEY, PREFERENCES_KEY, SUBSCRIPTION_KEY } from "../constants";
 import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
+import { CheckMark } from "../components/CheckMark";
+import { YourSelection } from "../components/YourSelection";
+import { CartIcon } from "../components/CartIcon";
+import ScrollToTop from "../components/ScrollToTop";
 //#endregion
 
 //#region data imports
@@ -17,10 +21,6 @@ import frequencyData from "../data/frequency_data.json";
 import preferencesData from "../data/preferences_data.json";
 import peopleData from "../data/people_data.json";
 import subscriptionData from "../data/subscription_data.json";
-import { CheckMark } from "../components/CheckMark";
-import { YourSelection } from "../components/YourSelection";
-import { CartIcon } from "../components/CartIcon";
-import ScrollToTop from "../components/ScrollToTop";
 //#endregion
 
 export const PersonalizePlan = () => {
@@ -40,18 +40,19 @@ export const PersonalizePlan = () => {
     navigate("/register");
   };
 
-  setTimeout(() => {
-    accordionTrigger.current?.click();
-  }, 1000);
+  // setTimeout(() => {
+  //   accordionTrigger.current?.click();
+  // }, 1000);
 
   return (
     <Form className="" onSubmit={handleSubmit(saveData)}>
       <ScrollToTop />
+
       <fieldset>
         <Heading title="Personalize Your Plan" />
 
         <div className="row">
-          <div id="plan-choices" className="col-sm-12 col-lg-8 p-5">
+          <div id="plan-choices" className="col-sm-12 col-lg-8 p-4 p-md-5 p-lg-5">
             <div>
               <h4>Choose your preferences</h4>
               <p>Your preferences will help us show you the most relevant meals first. You will still have access to all the meals each week!</p>

@@ -20,11 +20,11 @@ import { MealsCarousel } from "../components/MealsCarousel";
 
 export const LandingPage = () => {
   return (
-    <div className="container">
+    <div className="">
       <Offer />
 
       <div
-        className="row align-items-center p-sm-4 p-lg-5"
+        className="row align-items-center p-sm-5 p-md-5 p-lg-5"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: "cover",
@@ -34,19 +34,21 @@ export const LandingPage = () => {
           maxHeight: "70vh",
         }}
       >
-        <div className="col-sm-12 px-sm-0 px-md-3">
-          <h1 className="fw-bold text-white mb-3 lh-1 text-uppercase oswald-font col-sm-12 col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-            Healthy Eating Made Easy
-          </h1>
-          <h6 className="mb-5 text-white opensans-font fw-light">Your guide to convenient and healthy eating</h6>
-
-          <Link className="btn btn-primary me-3 text-uppercase mb-3" to="/build">
-            Build a meal
-          </Link>
-
-          <a className="btn btn-outline-light text-uppercase mb-3" href="#all-meals">
-            See all meals
-          </a>
+        <div className="col-sm-12">
+          <div className="container">
+            <h1 className="fw-bold text-white mb-3 lh-1 text-uppercase oswald-font col-sm-12 col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+              Healthy Eating Made Easy
+            </h1>
+            <h6 className="mb-5 text-white opensans-font fw-light">Your guide to convenient and healthy eating</h6>
+            
+            <Link className="btn btn-primary me-3 text-uppercase mb-3" to="/build">
+              Build a meal
+            </Link>
+            
+            <a className="btn btn-outline-light text-uppercase mb-3" href="#all-meals">
+              See all meals
+            </a>
+          </div>
         </div>
       </div>
 
@@ -138,15 +140,17 @@ export const LandingPage = () => {
 
       <div id="all-meals" className="row text-center">
         <div className="col-12 py-5 my-5">
-          <Heading title="EXPLORE OUR MENU" className="mb-5" />
-
-          <div className="mb-5">
-            <MealsCarousel />
+          <div className="container">
+            <Heading title="EXPLORE OUR MENU" className="mb-5" />
+            
+            <div className="mb-5">
+              <MealsCarousel />
+            </div>
+            
+            <Link className="btn btn-primary" to="/build">
+              BROWSE OUR MEALS
+            </Link>
           </div>
-
-          <Link className="btn btn-primary" to="/build">
-            BROWSE OUR MEALS
-          </Link>
         </div>
       </div>
     </div>
