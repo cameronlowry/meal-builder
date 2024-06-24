@@ -1,7 +1,7 @@
 //#region external imports
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Accordion } from "react-bootstrap";
 //#endregion
 
@@ -40,9 +40,17 @@ export const PersonalizePlan = () => {
     navigate("/register");
   };
 
-  // setTimeout(() => {
-  //   accordionTrigger.current?.click();
-  // }, 1000);
+  useEffect(() => {
+    accordionTrigger.current?.click();
+    setState({ ...state, summaryDisplayed: true });
+  }, []);
+  useEffect(() => {
+    if (state.summaryDisplayed) {
+      setTimeout(() => {
+        accordionTrigger.current?.click();
+      }, 1600);
+    }
+  }, [state.summaryDisplayed]);
 
   return (
     <Form className="" onSubmit={handleSubmit(saveData)}>
@@ -58,32 +66,7 @@ export const PersonalizePlan = () => {
               <p>Your preferences will help us show you the most relevant meals first. You will still have access to all the meals each week!</p>
 
               <div className="row g-3">
-                {preferences.map((button) => (
-                  <label htmlFor={button.labelid} key={button.id} className={`col-sm-6 col-lg-4`}>
-                    <div
-                      className={`border ${
-                        watch(PREFERENCES_KEY).includes(button.value) ? "border-secondary border-2" : "border-dark"
-                      } rounded-1 d-flex flex-column text-center p-3 position-relative`}
-                    >
-                      {watch(PREFERENCES_KEY).includes(button.value) && <CheckMark className="position-absolute" />}
-
-                      <span>
-                        <img style={{ height: "24px" }} className="" src={button.image} alt={button.title} /> {/* Add alt tag */}
-                      </span>
-
-                      <span className="fw-bold mt-2">{button.title}</span>
-
-                      <input
-                        {...register(PREFERENCES_KEY)}
-                        id={button.id}
-                        type="checkbox"
-                        className="d-none"
-                        value={button.value}
-                        data-field={PREFERENCES_KEY}
-                      />
-                    </div>
-                  </label>
-                ))}
+                {preferences.map((button) => preferenceButton(button, register, watch(PREFERENCES_KEY).includes(button.value)))}
               </div>
             </div>
 
@@ -93,30 +76,7 @@ export const PersonalizePlan = () => {
               <h4>Customize your Plan size</h4>
 
               <label className="mb-2">Number of people</label>
-              <div className="row mb-4">
-                {people.map((button) => (
-                  <label htmlFor={button.labelid} key={button.id} className={`col-6`}>
-                    <div
-                      className={`border rounded-1 position-relative ${
-                        watch(PEOPLE_KEY) === button.value ? "border-secondary border-2" : "border-dark"
-                      }`}
-                    >
-                      <div className="text-center p-3">
-                        <input
-                          {...register(PEOPLE_KEY)}
-                          id={button.id}
-                          className="d-none"
-                          type="radio"
-                          value={button.value}
-                          data-field={PEOPLE_KEY}
-                        />
-                        {button.title}
-                      </div>
-                      {watch(PEOPLE_KEY) === button.value && <CheckMark className="position-absolute" />}
-                    </div>
-                  </label>
-                ))}
-              </div>
+              <div className="row mb-4">{people.map((button) => radioButton(button, register, watch(PEOPLE_KEY) === button.value))}</div>
 
               <label className="mb-2">Meals per week</label>
               <div className="row mb-4">
@@ -124,7 +84,7 @@ export const PersonalizePlan = () => {
                   <label htmlFor={button.labelid} key={button.id} className={`col`}>
                     <div
                       className={`text-center p-3 border rounded-1 position-relative ${
-                        watch(FREQUENCY_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                        watch(FREQUENCY_KEY) === button.value ? "border-secondary border-2 bg-primary-lighter" : "border-dark"
                       }`}
                     >
                       {watch(FREQUENCY_KEY) === button.value && <CheckMark className="position-absolute" />}
@@ -156,7 +116,7 @@ export const PersonalizePlan = () => {
                   <label htmlFor={button.labelid} key={button.id} className={`col`}>
                     <div
                       className={`text-center p-3 border rounded-1 position-relative ${
-                        watch(SUBSCRIPTION_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                        watch(SUBSCRIPTION_KEY) === button.value ? "border-secondary border-2 bg-primary-lighter" : "border-dark"
                       }`}
                     >
                       {watch(SUBSCRIPTION_KEY) === button.value && <CheckMark className="position-absolute" />}
@@ -189,7 +149,7 @@ export const PersonalizePlan = () => {
             <Button>SELECT THIS PLAN</Button>
           </aside>
 
-          <Accordion defaultActiveKey="0" className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0">
+          <Accordion className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0">
             <Accordion.Item eventKey="0" className="shadow-xl">
               <Accordion.Button className="d-none" ref={accordionTrigger}></Accordion.Button>
               <Accordion.Header>
@@ -215,3 +175,33 @@ export const PersonalizePlan = () => {
     </Form>
   );
 };
+
+const preferenceButton = (button, register, isActive) => (
+  <label htmlFor={button.labelid} key={button.id} className={`col-sm-6 col-lg-4`}>
+    <div
+      className={`border ${isActive ? "border-secondary border-2 bg-primary-lighter" : "border-dark"} rounded-1 d-flex flex-column text-center p-3 position-relative`}
+    >
+      {isActive && <CheckMark className="position-absolute" />}
+
+      <span>
+        <img style={{ height: "24px" }} className="" src={button.image} alt={button.title} /> {/* Add alt tag */}
+      </span>
+
+      <span className="fw-bold mt-2">{button.title}</span>
+
+      <input {...register(PREFERENCES_KEY)} id={button.id} type="checkbox" className="d-none" value={button.value} data-field={PREFERENCES_KEY} />
+    </div>
+  </label>
+);
+
+const radioButton = (button, register, isActive) => (
+  <label htmlFor={button.labelid} key={button.id} className={`col-6`}>
+    <div className={`border rounded-1 position-relative ${isActive ? "border-secondary border-2 bg-primary-lighter" : "border-dark"}`}>
+      <div className="text-center p-3">
+        <input {...register(PEOPLE_KEY)} id={button.id} className="d-none" type="radio" value={button.value} data-field={PEOPLE_KEY} />
+        {button.title}
+      </div>
+      {isActive && <CheckMark className="position-absolute" />}
+    </div>
+  </label>
+);

@@ -70,8 +70,8 @@ export const Complete = () => {
                   {/* <MealCard meal={meal} /> */}
                   <div className="h-100 px-0 border rounded-3 bg-white position-relative overflow-hidden">
                     <div className="d-flex flex-column justify-content-between h-100">
-                      <div className="h-33 mb-2">
-                        <img className="img-fluid" src={meal.image} alt={meal.title} />
+                      <div className="mb-2">
+                        <img className="img-fluid w-100" src={meal.image} alt={meal.title} />
                       </div>
         
                       <div className="p-3 d-flex flex-column justify-content-between h-100">
@@ -80,7 +80,7 @@ export const Complete = () => {
                         </h6>
         
                         <div className="mb-2">
-                          <span className="badge text-bg-info">{meal.type}</span>
+                          <span className="badge text-bg-info">{meal.category}</span>
                         </div>
                       </div>
                     </div>

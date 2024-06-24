@@ -122,13 +122,13 @@ export const Address = () => {
               <h6 className="mb-4">Delivery Day</h6>
 
               <div className="d-flex align-items-center gap-4 mb-5">
-                <label className="">Number of people per week</label>
+                <label className="">When do you want your weekly delivery?</label>
                 {days.map((button) => (
                   <label
                     htmlFor={button.labelid}
                     key={button.id}
                     className={`col border rounded-1 position-relative ${
-                      watch(DAY_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                      watch(DAY_KEY) === button.value ? "border-secondary border-2 bg-primary-lighter" : "border-dark"
                     }`}
                   >
                     <div className="text-center p-3">
@@ -147,19 +147,18 @@ export const Address = () => {
               </div>
 
               <div className="d-flex align-items-center gap-4 mb-5">
-                <label>Number of people per week</label>
+                <label>Pick your first day</label>
                 {dates.map((button) => (
                   <label
                     htmlFor={button.labelid}
                     key={button.id}
                     className={`col border rounded-1 position-relative ${
-                      watch(DATE_KEY) === button.value ? "border-secondary border-2" : "border-dark"
+                      watch(DATE_KEY) === button.value ? "border-secondary border-2 bg-primary-lighter" : "border-dark"
                     }`}
                   >
                     <div className="text-center p-3">
                       <input {...register(DATE_KEY)} id={button.id} className="d-none" type="radio" value={button.value} data-field={DATE_KEY} />
-
-                      {button.title}
+                      <span className="text-capitalize">{watch(DAY_KEY)}</span> {button.title}
                     </div>
                     {watch(DATE_KEY) === button.value && (
                       <span className="supr-checkmark position-absolute">

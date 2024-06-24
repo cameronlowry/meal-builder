@@ -38,14 +38,15 @@ $container-max-widths: (
   xxl: 1440px,
 );
 
-$theme-colors: (
-  "primary": $primary-green,
-  "secondary": $dark-green,
-  "info": $light-green,
-  "danger": $red,
-  "light": #ffffff,
-  "dark": #292726,
-);
+$primary: $primary-green;
+$secondary: $dark-green;
+$info: $light-green;
+$danger: $red;
+$success: $primary-green;
+$light: #ffffff;
+$dark: #292726;
+$link-color: $text-primary;
+
 $btn-border-radius: 2px;
 $btn-padding-x: 16px;
 $btn-padding-y: 8px;

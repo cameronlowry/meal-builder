@@ -143,7 +143,7 @@ export const LandingPage = () => {
           <div className="container">
             <Heading title="EXPLORE OUR MENU" className="mb-5" />
             
-            <div className="mb-5">
+            <div className="d-flex justify-content-center mb-5">
               <MealsCarousel />
             </div>
             
