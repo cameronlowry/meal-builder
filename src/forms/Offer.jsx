@@ -8,8 +8,8 @@ import { useAppState } from "../state/state";
 //#endregion
 
 //#region image imports
-import suprFoodLogo from "/public/logo.svg";
-import offerImage from "/public/offer.jpg";
+import suprFoodLogo from "/logo.svg";
+import offerImage from "/offer.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 //#endregion
 

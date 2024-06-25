@@ -3,7 +3,7 @@
         "title": "Veggie Stir-Fry",
         "description": "A flavorful stir-fry dish with a variety of vegetables and a tangy sauce.",
         "price": 10.00,
-        "image": "public/meal1.jpg",
+        "image": "/meal1.jpg",
         "value": "veggieStirFry",
         "id": "veggieStirFry",
         "category": "stir-fry"
@@ -12,7 +12,7 @@
         "title": "Miso Soup",
         "description": "A traditional Japanese soup made with soybean paste, tofu, and seaweed.",
         "price": 6.00,
-        "image": "public/meal2.jpg",
+        "image": "/meal2.jpg",
         "value": "misoSoup",
         "id": "misoSoup",
         "category": "soup"
@@ -21,7 +21,7 @@
         "title": "Vegan Pad Thai",
         "description": "A flavorful stir-fried noodle dish with tofu, vegetables, and peanuts.",
         "price": 11.00,
-        "image": "public/meal3.jpg",
+        "image": "/meal3.jpg",
         "value": "veganPadThai",
         "id": "veganPadThai",
         "category": "noodles"
@@ -30,7 +30,7 @@
         "title": "Quinoa salad",
         "description": "A refreshing salad with quinoa, mixed greens, and a tangy vinaigrette.",
         "price": 11.50,
-        "image": "public/meal4.jpg",
+        "image": "/meal4.jpg",
         "value": "quinoaSalad",
         "id": "quinoaSalad",
         "category": "salads"
@@ -39,7 +39,7 @@
         "title": "Veggie burger",
         "description": "A delicious plant-based burger with all the fixings.",
         "price": 13.50,
-        "image": "public/meal3.jpg",
+        "image": "/meal3.jpg",
         "value": "veggieBurger",
         "id": "veggieBurger",
         "category": "burgers"
@@ -48,7 +48,7 @@
         "title": "Fruit Salad",
         "description": "A refreshing salad with a variety of fresh fruits, perfect for a healthy snack.",
         "price": 8.50,
-        "image": "public/meal2.jpg",
+        "image": "/meal2.jpg",
         "value": "fruitSalad",
         "id": "fruitSalad",
         "category": "salads"
@@ -57,7 +57,7 @@
         "title": "Kale wrap",
         "description": "A delicious wrap filled with kale, tomato, and vegan cheese.",
         "price": 12.00,
-        "image": "public/meal1.jpg",
+        "image": "/meal1.jpg",
         "value": "kaleWrap",
         "id": "kaleWrap",
         "category": "wraps"
@@ -66,7 +66,7 @@
         "title": "Hummus Plate",
         "description": "A delicious plate of hummus, served with pita bread and fresh vegetables.",
         "price": 7.50,
-        "image": "public/meal2.jpg",
+        "image": "/meal2.jpg",
         "value": "hummusPlate",
         "id": "hummusPlate",
         "category": "appetizers"
@@ -75,7 +75,7 @@
         "title": "Caprese Salad",
         "description": "A refreshing salad with fresh tomatoes, mozzarella cheese, and basil.",
         "price": 8.00,
-        "image": "public/meal4.jpg",
+        "image": "/meal4.jpg",
         "value": "capreseSalad",
         "id": "capreseSalad",
         "category": "salads"
@@ -84,7 +84,7 @@
         "title": "Avocado toast",
         "description": "A classic breakfast dish with mashed avocado on toasted bread.",
         "price": 8.50,
-        "image": "public/meal3.jpg",
+        "image": "/meal3.jpg",
         "value": "avocadoToast",
         "id": "avocadoToast",
         "category": "breakfast"
@@ -93,7 +93,7 @@
         "title": "Margherita Pizza",
         "description": "A classic pizza topped with fresh tomatoes, mozzarella cheese, and basil.",
         "price": 9.50,
-        "image": "public/meal1.jpg",
+        "image": "/meal1.jpg",
         "value": "margheritaPizza",
         "id": "margheritaPizza",
         "category": "pizza"
@@ -102,7 +102,7 @@
         "title": "Dragon fruit bowl",
         "description": "A delicious bowl of dragon fruit, topped with fresh fruit and granola.",
         "price": 10.00,
-        "image": "public/meal2.jpg",
+        "image": "/meal2.jpg",
         "value": "dragonFruitBowl",
         "id": "dragonFruitBowl",
         "category": "bowls"
@@ -111,7 +111,7 @@
         "title": "Mushroom risotto",
         "description": "A creamy and flavorful risotto made with fresh mushrooms.",
         "price": 14.00,
-        "image": "public/meal4.jpg",
+        "image": "/meal4.jpg",
         "value": "mushroomRisotto",
         "id": "mushroomRisotto",
         "category": "risotto"
@@ -120,7 +120,7 @@
         "title": "Falafel Wrap",
         "description": "A tasty wrap filled with crispy falafel, hummus, and fresh vegetables.",
         "price": 10.50,
-        "image": "public/meal1.jpg",
+        "image": "/meal1.jpg",
         "value": "falafelWrap",
         "id": "falafelWrap",
         "category": "wraps"
@@ -129,7 +129,7 @@
         "title": "Greek Salad",
         "description": "A refreshing salad with cucumbers, tomatoes, olives, and feta cheese.",
         "price": 9.00,
-        "image": "public/meal3.jpg",
+        "image": "/meal3.jpg",
         "value": "greekSalad",
         "id": "greekSalad",
         "category": "salads"
@@ -138,7 +138,7 @@
         "title": "Pesto Pasta",
         "description": "A flavorful pasta dish with homemade pesto sauce and cherry tomatoes.",
         "price": 10.50,
-        "image": "public/meal4.jpg",
+        "image": "/meal4.jpg",
         "value": "pestoPasta",
         "id": "pestoPasta",
         "category": "pasta"
@@ -147,7 +147,7 @@
         "title": "Vegetable Curry",
         "description": "A flavorful curry made with a variety of vegetables and aromatic spices.",
         "price": 13.50,
-        "image": "public/meal2.jpg",
+        "image": "/meal2.jpg",
         "value": "vegetableCurry",
         "id": "vegetableCurry",
         "category": "curry"
@@ -156,7 +156,7 @@
         "title": "Sushi Roll",
         "description": "A delicious roll of sushi with fresh fish, rice, and vegetables.",
         "price": 15.00,
-        "image": "public/meal3.jpg",
+        "image": "/meal3.jpg",
         "value": "sushiRoll",
         "id": "sushiRoll",
         "category": "sushi"
