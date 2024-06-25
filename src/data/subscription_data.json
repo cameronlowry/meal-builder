@@ -1,8 +1,8 @@
 [
     {
-        "title": "A la Carte",
-        "value": "aLaCarte",
-        "id": "aLaCarte"
+        "title": "Weekly meals",
+        "value": "weekly",
+        "id": "weekly"
     },
     {
         "title": "One time purchase",

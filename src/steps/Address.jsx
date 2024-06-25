@@ -118,6 +118,8 @@ export const Address = () => {
               </div>
             </div>
 
+            <hr />
+
             <div>
               <h6 className="mb-4">Delivery Day</h6>
 

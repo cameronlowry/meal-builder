@@ -66,10 +66,6 @@ export const Offer = () => {
 
                 <div className="d-flex align-items-center gap-2 mt-4">
                   <button className="btn btn-primary">UNLOCK OFFER</button>
-
-                  <a href="#" onClick={handleClose} className="text-decoration-none">
-                    Maybe later
-                  </a>
                 </div>
 
                 <p className="mt-3">
