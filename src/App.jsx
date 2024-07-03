@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="meal-builder-app">
       <AppProvider>
-        <BrowserRouter>
+        <MemoryRouter>
           <Stepper />
 
           <Routes>
@@ -35,7 +35,7 @@ function App() {
             <Route path="/offer" element={<Offer />} />
             <Route path="/error" element={<Error />} />
           </Routes>
-        </BrowserRouter>
+        </MemoryRouter>
       </AppProvider>
     </div>
   );
