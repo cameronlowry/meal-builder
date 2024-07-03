@@ -8,10 +8,15 @@ import { Button, Field, Form, Input } from "../forms";
 import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
 import ScrollToTop from "../components/ScrollToTop";
+import { useState } from "react";
+import { validateSteps } from "../services/PlanService";
 //#endregion
+
+const STEP_KEY = "/register";
 
 export const Register = () => {
   const [state, setState] = useAppState();
+  const [showLogin, setShowLogin] = useState(false);
 
   const {
     handleSubmit,
@@ -24,7 +29,13 @@ export const Register = () => {
   // const watchPassword = watch("password");
 
   const saveData = (data) => {
-    setState({ ...state, ...data });
+    const steps = validateSteps({ ...state, ...data });
+
+    if (!steps.find((step) => step.path === STEP_KEY).isComplete) {
+      setState({ ...state, steps });
+      return;
+    }
+    setState({ ...state, ...data, steps });
     navigate("/address");
   };
 
@@ -33,19 +44,19 @@ export const Register = () => {
       <ScrollToTop />
 
       <fieldset className="">
-        <Heading title="Get Started" />
+        <Heading title={showLogin ? "Login" : "Get Started"} />
 
-        <h6 className="text-center pt-5">Add your email</h6>
+        <h6 className="text-center pt-5">{showLogin ? "Email" : "Add your email"}</h6>
 
         <Field label="Email address" error={errors?.email}>
           <Input {...register("email", { required: "Email is required" })} type="email" id="email" placeholder="example@email.com" />
         </Field>
 
-        <h6 className="text-center pt-5">Create a password</h6>
+        {/* <h6 className="text-center pt-5">{showLogin ? "Password" : "Create a password"}</h6>
 
         <Field label="Password" error={errors?.password}>
           <Input {...register("password", { required: "Password is required" })} type="password" id="password" />
-        </Field>
+        </Field> */}
 
         {/* <Field label="Confirm password" error={errors?.confirmPassword}>
             <Input
@@ -60,6 +71,16 @@ export const Register = () => {
 
         <div className="pt-5">
           <Button>CONTINUE</Button>
+        </div>
+
+        <div className="mt-5">
+          Existing customer?{" "}
+          <a
+            className="link-primary"
+            href={`https://shopify.com/57455509638/account/pages/e85ad72a-1b9d-4038-8e07-a4d61164ed72/`}
+          >
+            Manage subscription
+          </a>
         </div>
       </fieldset>
     </Form>

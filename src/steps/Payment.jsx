@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
-// import { PaymentForm } from "react-square-web-payments-sdk";
 
-import { Button, Form } from "../forms";
+import { Button } from "../forms";
 import { useAppState } from "../state/state";
 import { Heading } from "../components/Heading";
 import { ShippingEstimate } from "../components/ShippingEstimate";
 import { CartIcon } from "../components/CartIcon";
 import ScrollToTop from "../components/ScrollToTop";
+import PaymentRedirect from "../components/PaymentRedirect";
 
 export const Payment = () => {
   const [state, setState] = useAppState();
@@ -22,16 +22,15 @@ export const Payment = () => {
   };
 
   return (
-    <Form className="" onSubmit={handleSubmit(saveData)}>
+    <div className="container py-5">
       <ScrollToTop />
 
       <fieldset>
         <Heading title="Payment" />
 
         <div className="row">
-          <div className="col-sm-12 col-lg-8 p-4 p-md-5 p-lg-5">
-            {/* <PaymentForm applicationId="sq0idp-Y0QZQ-test" /> */}
-            PAYMENT FORM HERE
+          <div className="col-sm-12 col-lg-8 px--sm-0 px-md-5">
+            <PaymentRedirect />            
           </div>
 
           <aside id="selected-choices" className="d-none d-lg-block d-xl-block col-4 sticky-top" style={{ height: "fit-content" }}>
@@ -45,7 +44,7 @@ export const Payment = () => {
             </div>
 
             <div className="text-center">
-              <Button>PLACE ORDER</Button>
+              {/* <Button>PLACE ORDER</Button> */}
 
               <div className="mt-2">
                 <Link className={``} to="/pickmeals">
@@ -55,7 +54,7 @@ export const Payment = () => {
             </div>
           </aside>
 
-          <Accordion className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0 ">
+          <Accordion className="fixed-bottom d-sm-block d-md-block d-lg-none d-xl-none px-0">
             <Accordion.Item eventKey="0" className="shadow-xl">
               <Accordion.Header>
                 <div className="d-flex align-items-end gap-2">
@@ -82,6 +81,6 @@ export const Payment = () => {
           </Accordion>
         </div>
       </fieldset>
-    </Form>
+    </div>
   );
 };

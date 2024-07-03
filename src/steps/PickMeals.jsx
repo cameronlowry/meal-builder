@@ -1,7 +1,8 @@
 //#region external imports
-import { useForm } from "react-hook-form";
+import { Accordion, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 //#endregion
 
 //#region internal imports
@@ -11,17 +12,116 @@ import { CheckMark } from "../components/CheckMark";
 import { FREQUENCY_KEY, MEALS_KEY } from "../constants";
 import { Heading } from "../components/Heading";
 import { useAppState } from "../state/state";
+import { Loading } from "../components/Loading";
+import ScrollToTop from "../components/ScrollToTop";
+import { mapProductToMeal, validateSteps } from "../services/PlanService";
 //#endregion
 
-//#region data imports
-import mealsData from "../data/meals_data.json";
-import ScrollToTop from "../components/ScrollToTop";
-import { Accordion, Alert } from "react-bootstrap";
-//#endregion
+const STEP_KEY = "/pickmeals";
 
 export const PickMeals = () => {
   const [state, setState] = useAppState();
-  const [meals] = useState(mealsData);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const meals = products.map(mapProductToMeal);
+
+  // Fetch products when the component mounts
+  useEffect(() => {
+    const query = `
+    {
+      products(first: 10) {
+        edges {
+          node {
+            id
+            title
+            description
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  price {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  src
+                }
+              }
+            }
+            sellingPlanGroups(first: 5) {
+              edges {
+                node {
+                  name
+                  options {
+                    name
+                    values
+                  }
+                  sellingPlans(first: 5) {
+                    edges {
+                      node {
+                        id
+                        name
+                        description
+                        options {
+                          name
+                          value
+                        }
+                        priceAdjustments {
+                          adjustmentValue {
+                            ... on SellingPlanPercentagePriceAdjustment {
+                              adjustmentPercentage
+                            }
+                            ... on SellingPlanFixedAmountPriceAdjustment {
+                              adjustmentAmount {
+                                amount
+                                currencyCode
+                              }
+                            }
+                            ... on SellingPlanFixedPriceAdjustment {
+                              price {
+                                amount
+                                currencyCode
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`;
+
+    fetch(`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/api/2023-01/graphql.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC_ACCESS_TOKEN,
+      },
+      body: JSON.stringify({ query }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setProducts(data.data.products.edges.map((edge) => edge.node));
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   const { handleSubmit, setValue, getValues, watch, register } = useForm({ defaultValues: state });
   const navigate = useNavigate();
@@ -30,10 +130,17 @@ export const PickMeals = () => {
   const showMaxReachedAlert = selectedMealCount > 0 && selectedMealCount >= selectedFrequency;
 
   const saveData = (data) => {
-    setState({ ...state, ...data });
+    const steps = validateSteps({ ...state, ...data });
+
+    if (!steps.find((step) => step.path === STEP_KEY).isComplete) {
+      setState({ ...state, steps });
+      return;
+    }
+    setState({ ...state, ...data, steps });
     navigate("/payment");
   };
 
+  //#region Components
   const mealCard = (meal) => (
     <div key={meal.id} className="col-sm-9 col-md-4 col-lg-4 col-xl-4 position-relative">
       {watch(MEALS_KEY).find((x) => meal.id === x.id) && <CheckMark className="position-absolute" />}
@@ -47,73 +154,78 @@ export const PickMeals = () => {
           </div>
 
           <div className="p-3 d-flex flex-column justify-content-between h-100">
-            <h6 className="fw-bold mb-2" htmlFor={meal.id}>
-              {meal.title}
-            </h6>
+            <div>
+              <h6 className="fw-bold mb-2" htmlFor={meal.id}>
+                {meal.title}
+              </h6>
 
-            <div className="mb-1">{meal.description}</div>
-            <div className="mb-2">
-              <span className="badge text-bg-info">{meal.category}</span>
+              <div className="mb-1">{meal.description}</div>
+              <div className="mb-3">
+                <span className="badge text-bg-info">{meal.category}</span>
+              </div>
             </div>
-            <div className="mb-2">${meal.price.toFixed(2)}</div>
 
-            {!getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value) && (
-              <a
-                className="btn btn-outline-secondary w-100"
-                onClick={() => {
-                  const selectedMealCount = watch(MEALS_KEY).reduce((acc, meal) => acc + parseInt(meal.count), 0);
-                  if (selectedMealCount >= parseInt(watch(FREQUENCY_KEY))) {
-                    return;
-                  }
-                  setValue(MEALS_KEY, [...getValues(MEALS_KEY), { ...meal, count: 1 }]);
-                }}
-              >
-                Add to box
-              </a>
-            )}
+            <div>
+              <div className="mb-2">${meal.price.amount}</div>
 
-            {getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value) && (
-              <div className="d-flex align-items-center justify-content-between w-100">
+              {!getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value) && (
                 <a
-                  className="link"
-                  onClick={() =>
-                    setValue(
-                      MEALS_KEY,
-                      getValues(MEALS_KEY).filter((selectedMeal) => selectedMeal.value !== meal.value)
-                    )
-                  }
-                >
-                  Remove
-                </a>
-
-                <select
-                  className="p-2 rounded-1"
-                  onChange={(event) => {
-                    const selectedMealCount = watch(MEALS_KEY)
-                      .filter((x) => x.id !== event.target.dataset.id)
-                      .reduce((acc, meal) => acc + parseInt(meal.count), 0);
-                    const additionalCount = parseInt(event.target.value);
-                    if (selectedMealCount + additionalCount > parseInt(watch(FREQUENCY_KEY))) {
+                  className="btn btn-outline-secondary w-100"
+                  onClick={() => {
+                    const selectedMealCount = watch(MEALS_KEY).reduce((acc, meal) => acc + parseInt(meal.count), 0);
+                    if (selectedMealCount >= parseInt(watch(FREQUENCY_KEY))) {
                       return;
                     }
-                    setValue(
-                      MEALS_KEY,
-                      getValues(MEALS_KEY).map((selectedMeal) => ({
-                        ...selectedMeal,
-                        count: selectedMeal.value === meal.value ? event.target.value : selectedMeal.count,
-                      }))
-                    );
+                    setValue(MEALS_KEY, [...getValues(MEALS_KEY), { ...meal, count: 1 }]);
                   }}
-                  value={getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value).count}
-                  data-id={meal.id}
-                  aria-label={`Select quantity for ${meal.title}`}
                 >
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                </select>
-              </div>
-            )}
+                  Add to box
+                </a>
+              )}
+
+              {getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value) && (
+                <div className="d-flex align-items-center justify-content-between w-100">
+                  <a
+                    className="link"
+                    onClick={() =>
+                      setValue(
+                        MEALS_KEY,
+                        getValues(MEALS_KEY).filter((selectedMeal) => selectedMeal.value !== meal.value)
+                      )
+                    }
+                  >
+                    Remove
+                  </a>
+
+                  <select
+                    className="p-2 rounded-1"
+                    onChange={(event) => {
+                      const selectedMealCount = watch(MEALS_KEY)
+                        .filter((x) => x.id !== event.target.dataset.id)
+                        .reduce((acc, meal) => acc + parseInt(meal.count), 0);
+                      const additionalCount = parseInt(event.target.value);
+                      if (selectedMealCount + additionalCount > parseInt(watch(FREQUENCY_KEY))) {
+                        return;
+                      }
+                      setValue(
+                        MEALS_KEY,
+                        getValues(MEALS_KEY).map((selectedMeal) => ({
+                          ...selectedMeal,
+                          count: selectedMeal.value === meal.value ? event.target.value : selectedMeal.count,
+                        }))
+                      );
+                    }}
+                    value={getValues(MEALS_KEY).find((selectedMeal) => selectedMeal.value === meal.value).count}
+                    data-id={meal.id}
+                    aria-label={`Select quantity for ${meal.title}`}
+                  >
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                  </select>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -132,7 +244,7 @@ export const PickMeals = () => {
                 MEALS_KEY,
                 getValues(MEALS_KEY).map((onChangeMeal) => ({
                   ...onChangeMeal,
-                  count: onChangeMeal.value === selectedMeal.value ? event.target.value : onChangeMeal.count,
+                  count: parseInt(onChangeMeal.value === selectedMeal.value ? event.target.value : onChangeMeal.count),
                 }))
               )
             }
@@ -197,6 +309,7 @@ export const PickMeals = () => {
       ></a>
     </div>
   );
+  //#endregion
 
   return (
     <Form className="pick-meals" onSubmit={handleSubmit(saveData)}>
@@ -209,7 +322,10 @@ export const PickMeals = () => {
           <div className="col-sm-12 col-lg-8">
             <h6>Full Meals</h6>
 
-            <div className="row g-4 flex-nowrap flex-sm-nowrap flex-md-wrap overflow-x-auto p-2">{meals.map(mealCard)}</div>
+            <div className="row g-4 flex-nowrap flex-sm-nowrap flex-md-wrap overflow-x-auto p-2">
+              {loading && <Loading animation="grow" />}
+              {meals.map(mealCard)}
+            </div>
           </div>
 
           <aside id="selected-choices" className="col-4 d-none d-lg-block d-xl-block sticky-top" style={{ height: "fit-content" }}>
@@ -223,7 +339,9 @@ export const PickMeals = () => {
               {watch(MEALS_KEY).map(selectedMealRow)}
 
               {selectedMealCount === 0 && <span className="text-grey">Select up to {selectedFrequency} meals</span>}
-              {(!showMaxReachedAlert && selectedMealCount > 0) && <span className="text-grey">Select up to {selectedFrequency - selectedMealCount} more</span>}
+              {!showMaxReachedAlert && selectedMealCount > 0 && (
+                <span className="text-grey">Select up to {selectedFrequency - selectedMealCount} more</span>
+              )}
 
               <Alert show={showMaxReachedAlert} key={"meals-limit-alert"} variant={"primary"}>
                 You've picked all your meals. Thanks!

@@ -9,11 +9,11 @@ import { CartIcon } from "../components/CartIcon";
 //#endregion
 
 //#region image imports
-import heroImage from "/meal-builder-hero.jpg";
-import cookImage from "/cook.png";
-import heatImage from "/heat.png";
-import cookingImage from "/meal-builder-cooking.png";
-import leafImage from "/leaf.png";
+import heroImage from "/public/meal-builder-hero.jpg";
+import cookImage from "/public/cook.png";
+import heatImage from "/public/heat.png";
+import cookingImage from "/public/meal-builder-cooking.png";
+import leafImage from "/public/leaf.png";
 import { Offer } from "../forms/Offer";
 import { MealsCarousel } from "../components/MealsCarousel";
 //#endregion

@@ -21,6 +21,10 @@
     right: -9px;
     z-index: 2;
   }
+  &.small {
+    width: 24px;
+    height: 24px;
+  }
 }
 .pick-meals .supr-checkmark.position-absolute {
   top: -10px;

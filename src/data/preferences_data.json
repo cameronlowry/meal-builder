@@ -3,36 +3,36 @@
             "title": "Meat & Veggies",
             "id": "meat-vegetable",
             "value": "meat-vegetable",
-            "image": "/meat-vegetable.png"
+            "image": "/public/meat-vegetable.png"
         },
         {
             "title": "Veggie",
             "id": "vegetable",
             "value": "vegetable",
-            "image": "/vegetable.png"
+            "image": "/public/vegetable.png"
         },
         {
             "title": "Family Friendly",
             "id": "family-friendly",
             "value": "family-friendly",
-            "image": "/family-friendly.png"
+            "image": "/public/family-friendly.png"
         },
         {
             "title": "Fit & Wholesome",
             "id": "fit-wholesome",
             "value": "fit-wholesome",
-            "image": "/fit-wholesome.png"
+            "image": "/public/fit-wholesome.png"
         },
         {
             "title": "Pescatarian",
             "id": "pescatarian",
             "value": "pescatarian",
-            "image": "/pescatarian.png"
+            "image": "/public/pescatarian.png"
         },
         {
             "title": "Under 20 min",
             "id": "quick",
             "value": "quick",
-            "image": "/quick.png"
+            "image": "/public/quick.png"
         }
     ]

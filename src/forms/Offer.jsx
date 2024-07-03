@@ -1,5 +1,6 @@
 //#region external imports
 import Modal from "react-bootstrap/Modal";
+import { useLocation, useNavigate } from "react-router-dom";
 //#endregion
 
 //#region internal imports
@@ -8,9 +9,8 @@ import { useAppState } from "../state/state";
 //#endregion
 
 //#region image imports
-import suprFoodLogo from "/logo.svg";
-import offerImage from "/offer.jpg";
-import { useLocation, useNavigate } from "react-router-dom";
+import suprFoodLogo from "/public/logo.svg";
+import offerImage from "/public/offer.jpg";
 //#endregion
 
 /**
@@ -32,6 +32,12 @@ export const Offer = () => {
       navigate("/build");
     }
   };
+
+  // useState(() => {
+  //   createDiscountCode().then((discountCode) => {
+  //     setState({ ...state, discountCode });
+  //   });
+  // }, []);
 
   return (
     <Modal
@@ -67,6 +73,8 @@ export const Offer = () => {
                 <div className="d-flex align-items-center gap-2 mt-4">
                   <button className="btn btn-primary">UNLOCK OFFER</button>
                 </div>
+
+                {/* <div className="">{state.discountCode}</div> */}
 
                 <p className="mt-3">
                   <small>*Only valid for first time subscribers</small>

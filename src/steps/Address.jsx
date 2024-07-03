@@ -10,7 +10,6 @@ import { Accordion } from "react-bootstrap";
 import { Button, Field, Form, Input } from "../forms";
 import { useAppState } from "../state/state";
 import { DATE_KEY, DAY_KEY } from "../constants";
-import { Heading } from "../components/Heading";
 //#endregion
 
 //#region data imports
@@ -19,7 +18,11 @@ import datesData from "../data/dates_data.json";
 import { ShippingEstimate } from "../components/ShippingEstimate";
 import { CartIcon } from "../components/CartIcon";
 import ScrollToTop from "../components/ScrollToTop";
+import { Heading } from "../components/Heading";
+import { validateSteps } from "../services/PlanService";
 //#endregion
+
+const STEP_KEY = "/address";
 
 export const Address = () => {
   const [state, setState] = useAppState();
@@ -36,7 +39,13 @@ export const Address = () => {
   const navigate = useNavigate();
 
   const saveData = (data) => {
-    setState({ ...state, ...data });
+    const steps = validateSteps({ ...state, ...data });
+
+    if (!steps.find((step) => step.path === STEP_KEY).isComplete) {
+      setState({ ...state, steps });
+      return;
+    }
+    setState({ ...state, ...data, steps });
     navigate("/pickmeals");
   };
 
@@ -73,16 +82,16 @@ export const Address = () => {
 
             <div className="row">
               <div className="col-sm-12 col-md-6">
-                <Field label="Address*" error={errors?.street}>
+                <Field label="Address*" error={errors?.addressLine1}>
                   {/* <Autocomplete
-                    id="address"
+                    id="addressLine1Autocomplete"
                     className="d-block w-100 form-control"
                     apiKey={"TODO"}
                     onPlaceSelected={(place) => {
                       console.log(place);
                     }}
                   /> */}
-                  <Input {...register("address")} id="address" />
+                  <Input {...register("addressLine1", { required: "Address is required" })} id="addressLine1" />
                 </Field>
               </div>
               <div className="col-sm-12 col-md-6">
@@ -95,7 +104,7 @@ export const Address = () => {
             <div className="row">
               <div className="col-sm-12 col-md-4">
                 <Field label="City*" error={errors?.city}>
-                  <Input {...register("city", { required: "city is required" })} id="city" />
+                  <Input {...register("city", { required: "City is required" })} id="city" />
                 </Field>
               </div>
               <div className="col-sm-12 col-md-4">
@@ -134,7 +143,14 @@ export const Address = () => {
                     }`}
                   >
                     <div className="text-center p-3">
-                      <input {...register(DAY_KEY)} id={button.id} className="d-none" type="radio" value={button.value} data-field={DAY_KEY} />
+                      <input
+                        {...register(DAY_KEY, { required: "Delivery Day is required" })}
+                        id={button.id}
+                        className="d-none"
+                        type="radio"
+                        value={button.value}
+                        data-field={DAY_KEY}
+                      />
 
                       {button.title}
                     </div>
@@ -146,6 +162,7 @@ export const Address = () => {
                     )}
                   </label>
                 ))}
+                {errors[DAY_KEY] && <small className="error">{errors[DAY_KEY]?.message}</small>}
               </div>
 
               <div className="d-flex align-items-center gap-4 mb-5">
@@ -159,7 +176,14 @@ export const Address = () => {
                     }`}
                   >
                     <div className="text-center p-3">
-                      <input {...register(DATE_KEY)} id={button.id} className="d-none" type="radio" value={button.value} data-field={DATE_KEY} />
+                      <input
+                        {...register(DATE_KEY, { required: "Delivery Date is required" })}
+                        id={button.id}
+                        className="d-none"
+                        type="radio"
+                        value={button.value}
+                        data-field={DATE_KEY}
+                      />
                       <span className="text-capitalize">{watch(DAY_KEY)}</span> {button.title}
                     </div>
                     {watch(DATE_KEY) === button.value && (
@@ -170,6 +194,7 @@ export const Address = () => {
                     )}
                   </label>
                 ))}
+                {errors[DATE_KEY] && <small className="error">{errors[DATE_KEY]?.message}</small>}
               </div>
             </div>
           </div>
