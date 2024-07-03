@@ -107,7 +107,7 @@ export const PickMeals = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC_ACCESS_TOKEN,
+        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC,
       },
       body: JSON.stringify({ query }),
     })

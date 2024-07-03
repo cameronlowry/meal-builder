@@ -28,7 +28,7 @@ const PaymentRedirect = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC_ACCESS_TOKEN,
+          "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC,
         },
         body: JSON.stringify({ query: createCartQuery }),
       });
@@ -80,7 +80,7 @@ const PaymentRedirect = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC_ACCESS_TOKEN,
+        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC,
       },
       body: JSON.stringify({ query: updateShippingAddressQuery, variables }),
     });
@@ -135,7 +135,7 @@ const PaymentRedirect = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC_ACCESS_TOKEN,
+        "X-Shopify-Storefront-Access-Token": import.meta.env.VITE_SHOPIFY_STOREFRONT_PUBLIC,
       },
       body: JSON.stringify({ query: addLineItemsMutation, variables: cartLinesAddVariables }),
     });
@@ -160,6 +160,7 @@ const PaymentRedirect = () => {
     console.debug("Successfully created checkout: ", checkoutUrl);
     const stateJSON = JSON.stringify({ ...state, password: null, confirmPassword: null, redirectedToCheckout: true });
     localStorage.setItem("appState", stateJSON);
+    window.history.pushState({}, document.title, "/pickmeals");
     // Redirect to Shopify checkout url with query params pre-filled
     window.location.href = checkoutUrl;
   }
